@@ -1,0 +1,10 @@
+\bbegin\b[^"]*$,\bend\b[^"]*$
+^\s*\bfunction\b,\bendfunction\b
+^\s*\bmodule\b,\bendmodule\b
+^\s*\bprogram\b,\bendprogram\b
+^\s*\bclass\b,\bendclass\b
+^\s*\btask\b,\bendtask\b
+^\s*\bcovergroup\b,^\s*\bendgroup\b
+\bfork\b,\bjoin\b|\bjoin_any\b|\bjoin_none\b
+`vmm_test_begin\b,`vmm_test_end\b
+{[^}]*$,^[^{]*}
