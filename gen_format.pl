@@ -14,10 +14,10 @@ if(@ARGV == 2){
     }
     while(<INPUT1>){
         /(.*?)\/\// && ($_ = $1);
-		/\/\*/ && (!/\*\//) && ($dummy =1) && next;
-		/\*\// && ($dummy =0) && next;
-		($dummy==1) && next;
-		foreach $key(keys %keyword_hash){
+	/\/\*/ && (!/\*\//) && ($dummy =1) && next;
+	/\*\// && ($dummy =0) && next;
+	($dummy==1) && next;
+	foreach $key(keys %keyword_hash){
             if(/$key/){
                 #print "1--",$_;
                 push @line_num_list,$.;
@@ -38,7 +38,7 @@ if(@ARGV == 2){
                         last;                        
                     }
                     else{
-						print "ERROR:keywords do not match,see line $line_num($keyword) and line $.($&) \n";
+		        print "ERROR:keywords do not match,see line $line_num($keyword) and line $.($&) \n";
                         exit 1;
                     }
                 }
@@ -60,13 +60,13 @@ if(@ARGV == 2){
     close INPUT1;
     close INPUT2;
     close OUTPUT;
-	print "Job Done!\nThe tmp file will overwrite the original file if you type Y\nType in your choice [Y/N] :";
-	system("gvim $output");
-	chomp ($choice = <STDIN>);
-	if($choice eq "Y"){
-	    system("rm -rf $input");
-		system("mv -f $output $input");
-	}
+    print "Job Done!\nThe tmp file will overwrite the original file if you type Y\nType in your choice [Y/N] :";
+    system("gvim $output");
+    chomp ($choice = <STDIN>);
+    if($choice eq "Y"){
+        system("rm -rf $input");
+	system("mv -f $output $input");
+    }
 }
 else {
     print "ERROR!"
