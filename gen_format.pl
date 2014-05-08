@@ -13,10 +13,15 @@ if(@ARGV == 2){
         #print "$1=>$2 ";
     }
     while(<INPUT1>){
+        #注释过滤部分
         /(.*?)\/\// && ($_ = $1);
-	/\/\*/ && (!/\*\//) && ($dummy =1) && next;
-	/\*\// && ($dummy =0) && next;
-	($dummy==1) && next;
+	if (/\/\*/){
+	    while(!/\*\//){
+	        $_ = <INPUT1>;	
+	    }
+	    $_ = <INPUT1>;
+	}
+	#过滤结束
 	foreach $key(keys %keyword_hash){
             if(/$key/){
                 #print "1--",$_;
@@ -32,7 +37,7 @@ if(@ARGV == 2){
                 }
                 else{
                     $line_num = pop @line_num_list;
-					$keyword = pop @keyword_list;
+		    $keyword = pop @keyword_list;
                     if($& =~ /$keyword_hash{$keyword}/){
                         $couple_hash{$line_num} = $.;
                         last;                        
