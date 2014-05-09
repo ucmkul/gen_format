@@ -14,7 +14,7 @@ if(@ARGV == 2){
     }
     while(<INPUT1>){
         &filter;
-	    foreach $key(keys %keyword_hash){
+	foreach $key(keys %keyword_hash){
             if(/$key/){
                 #print "1--",$_;
                 push @line_num_list,$.;
@@ -34,7 +34,7 @@ if(@ARGV == 2){
                         last;                        
                     }
                     else{
-		                die "ERROR:keywords do not match,see line $line_num($keyword) and line $.($keyword_hash{$key}) \n";
+		        die "ERROR:keywords do not match,see line $line_num($keyword) and line $.($keyword_hash{$key}) \n";
                     }
                 }
             }
@@ -57,7 +57,7 @@ if(@ARGV == 2){
     chomp ($choice = <STDIN>);
     if($choice eq "Y"){
         system("rm -rf $input");
-	    system("mv -f $output $input");
+	system("mv -f $output $input");
     }
 }
 else {
@@ -65,10 +65,10 @@ else {
 }
 sub filter{
     /(.*?)\/\// && ($_ = $1);
-	if (/\/\*/){
-	    while(!/\*\//){
-		    $_ = <INPUT1>;
-		}
-		$_ = <INPUT1>;
+    if (/\/\*/){
+        while(!/\*\//){
+	    $_ = <INPUT1>;
 	}
+	$_ = <INPUT1>;
+    }
 }
